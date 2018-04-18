@@ -1,8 +1,10 @@
 {
-  "name": "Elastic-Beanstalk-Sample-App",
+  "name": "aws-nodejs",
+  "description": "Nodejs example app AWS CI/CD Elastic Beanstalk",
   "version": "0.0.1",
-  "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "async": "2.5.x"
+  },
   "scripts": {
     "start": "node app.js"
   }
