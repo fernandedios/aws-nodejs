@@ -1,4 +1,5 @@
 const port = process.env.PORT || 3000,
+    _ = require('lodash'),
     http = require('http'),
     fs = require('fs'),
     html = fs.readFileSync('index.html');
@@ -26,7 +27,7 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
             res.end();
         });
-    } 
+    }
     else {
         res.writeHead(200);
         res.write(html);
