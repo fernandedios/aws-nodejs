@@ -1,31 +1,33 @@
-var port = process.env.PORT || 3000,
+const port = process.env.PORT || 3000,
     http = require('http'),
     fs = require('fs'),
     html = fs.readFileSync('index.html');
 
-var log = function(entry) {
+const log = (entry) => {
     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
 };
 
-var server = http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
     if (req.method === 'POST') {
-        var body = '';
+        let body = '';
 
-        req.on('data', function(chunk) {
+        req.on('data', (chunk) => {
             body += chunk;
         });
 
-        req.on('end', function() {
+        req.on('end', () => {
             if (req.url === '/') {
-                log('Received message: ' + body);
-            } else if (req.url = '/scheduled') {
-                log('Received task ' + req.headers['x-aws-sqsd-taskname'] + ' scheduled at ' + req.headers['x-aws-sqsd-scheduled-at']);
+                log(`Received message: ${body}`);
+            }
+            else if (req.url = '/scheduled') {
+                log(`Received task ${req.headers['x-aws-sqsd-taskname']} scheduled at ${req.headers['x-aws-sqsd-scheduled-at']}`);
             }
 
             res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
             res.end();
         });
-    } else {
+    } 
+    else {
         res.writeHead(200);
         res.write(html);
         res.end();
@@ -36,4 +38,4 @@ var server = http.createServer(function (req, res) {
 server.listen(port);
 
 // Put a friendly message on the terminal
-console.log('Server running at http://127.0.0.1:' + port + '/');
+console.log(`Server running at http://127.0.0.1:${port}/`);
