@@ -3,7 +3,8 @@
   "description": "Nodejs example app AWS CI/CD Elastic Beanstalk",
   "version": "0.0.1",
   "dependencies": {
-    "async": "2.5.x"
+    "async": "2.5.x",
+    "lodash": "^4.17.5"
   },
   "scripts": {
     "start": "node app.js"
